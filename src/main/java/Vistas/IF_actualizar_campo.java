@@ -7,12 +7,12 @@ package Vistas;
 
 /**
  *
- * @author Yasmi
+ * @author Windows 10
  */
-public class IF_actualizar_campo extends javax.swing.JInternalFrame {
+public class IF_actualizar_campo extends javax.swing.JPanel {
 
     /**
-     * Creates new form if_actualizar_campo
+     * Creates new form IF_actualizar_campo
      */
     public IF_actualizar_campo() {
         initComponents();
@@ -27,24 +27,16 @@ public class IF_actualizar_campo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
-        setTitle("Actualizar Campo");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
 

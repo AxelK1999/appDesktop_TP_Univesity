@@ -27,7 +27,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fondo_MenuPrincipal = new javax.swing.JDesktopPane();
+        fondo_MenuPrincipal = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_L = new javax.swing.JMenu();
         item_registrar_lote = new javax.swing.JMenuItem();
@@ -47,16 +47,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout fondo_MenuPrincipalLayout = new javax.swing.GroupLayout(fondo_MenuPrincipal);
-        fondo_MenuPrincipal.setLayout(fondo_MenuPrincipalLayout);
-        fondo_MenuPrincipalLayout.setHorizontalGroup(
-            fondo_MenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 705, Short.MAX_VALUE)
-        );
-        fondo_MenuPrincipalLayout.setVerticalGroup(
-            fondo_MenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
-        );
+        fondo_MenuPrincipal.setMinimumSize(new java.awt.Dimension(800, 600));
+        fondo_MenuPrincipal.setLayout(new java.awt.CardLayout());
 
         menu_L.setText("Lotes");
 
@@ -172,11 +164,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo_MenuPrincipal)
+            .addComponent(fondo_MenuPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(fondo_MenuPrincipal)
+            .addComponent(fondo_MenuPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -184,74 +176,100 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void item_unir_lotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_unir_lotesActionPerformed
         IF_unir_lotes ventana_unir_lotes = new IF_unir_lotes();
+        fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_unir_lotes);
-        ventana_unir_lotes.show();
+        actualizarVentana();
+        
+        
     }//GEN-LAST:event_item_unir_lotesActionPerformed
 
     private void item_registrar_incidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_registrar_incidenciaActionPerformed
         IF_registrar_incidencia ventana_registrar_incidencia = new IF_registrar_incidencia();
+        fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_registrar_incidencia);
-        ventana_registrar_incidencia.show();
+        actualizarVentana();
     }//GEN-LAST:event_item_registrar_incidenciaActionPerformed
 
     private void item_registrar_loteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_registrar_loteActionPerformed
         IF_registrar_lote ventana_registrar_lote = new IF_registrar_lote();
+        fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_registrar_lote);
-        ventana_registrar_lote.show();
+        actualizarVentana();
     }//GEN-LAST:event_item_registrar_loteActionPerformed
 
     private void item_separar_lotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_separar_lotesActionPerformed
         IF_separar_lotes ventana_separar_lotes = new IF_separar_lotes();
+          fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_separar_lotes);
-        ventana_separar_lotes.show();
+        actualizarVentana();
     }//GEN-LAST:event_item_separar_lotesActionPerformed
 
     private void item_actualizar_loteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_actualizar_loteActionPerformed
         IF_actualizar_lote ventana_actualizar_lote = new IF_actualizar_lote();
+         fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_actualizar_lote);
-        ventana_actualizar_lote.show();
+        actualizarVentana();
     }//GEN-LAST:event_item_actualizar_loteActionPerformed
 
     private void item_registrar_tdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_registrar_tdsActionPerformed
         IF_registrar_tds ventana_registrar_tds = new IF_registrar_tds();
+         fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_registrar_tds);
-        ventana_registrar_tds.show();
+        actualizarVentana();
     }//GEN-LAST:event_item_registrar_tdsActionPerformed
 
     private void item_registrar_campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_registrar_campoActionPerformed
         IF_registrar_campo ventana_registrar_campo = new IF_registrar_campo();
+        fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_registrar_campo);
-        ventana_registrar_campo.show();
+        actualizarVentana();
     }//GEN-LAST:event_item_registrar_campoActionPerformed
 
     private void item_actualizar_campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_actualizar_campoActionPerformed
         IF_actualizar_campo ventana_actualizar_campo = new IF_actualizar_campo();
+         fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_actualizar_campo);
-        ventana_actualizar_campo.show();
+        actualizarVentana();
     }//GEN-LAST:event_item_actualizar_campoActionPerformed
 
     private void item_iniciar_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_iniciar_pActionPerformed
         IF_iniciar_p ventana_iniciar_p = new IF_iniciar_p();
+        fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_iniciar_p);
-        ventana_iniciar_p.show();
+        actualizarVentana();
     }//GEN-LAST:event_item_iniciar_pActionPerformed
 
     private void item_cancelar_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cancelar_pActionPerformed
         IF_cancelar_p ventana_cancelar_p = new IF_cancelar_p();
+        
+        fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_cancelar_p);
-        ventana_cancelar_p.show();
+        actualizarVentana();
+        
     }//GEN-LAST:event_item_cancelar_pActionPerformed
-
+    
+    private void actualizarVentana(){
+        fondo_MenuPrincipal.repaint(); //Actualiza el repitado de todo los componenetes hijos (limpiando correctamente elementos viejos)
+        fondo_MenuPrincipal.revalidate();//vuelva a calcular el diseño (que es necesario al agregar componentes)
+    }
+    
     private void item_finalizar_laboreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_finalizar_laboreoActionPerformed
         IF_finalizar_laboreo ventana_finalizar_laboreo = new IF_finalizar_laboreo();
+
+       fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_finalizar_laboreo);
-        ventana_finalizar_laboreo.show();
+        actualizarVentana();
+        
+        //fondo_MenuPrincipal.add(ventana_finalizar_laboreo);
+        //ventana_finalizar_laboreo.show();
     }//GEN-LAST:event_item_finalizar_laboreoActionPerformed
 
     private void item_listar_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_listar_pActionPerformed
         IF_listar_p ventana_listar_p = new IF_listar_p();
+       
+        fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_listar_p);
-        ventana_listar_p.show();
+        actualizarVentana();
     }//GEN-LAST:event_item_listar_pActionPerformed
 
     /**
@@ -290,7 +308,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane fondo_MenuPrincipal;
+    private javax.swing.JPanel fondo_MenuPrincipal;
     private javax.swing.JMenuItem item_actualizar_campo;
     private javax.swing.JMenuItem item_actualizar_lote;
     private javax.swing.JMenuItem item_cancelar_p;
