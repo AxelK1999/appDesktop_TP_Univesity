@@ -1,7 +1,6 @@
 package Modelos;
 
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -28,10 +27,12 @@ public class Campo {
 	@JoinColumn(name = "fk_id_estado")
 	private EstadoCampo estado;
 	
-	@OneToMany(mappedBy = "campoDeLote",cascade = CascadeType.ALL )
+	@OneToMany(mappedBy = "campoDeLote",cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.REMOVE} )
 	private List<Lote> lotesList;
 	
-	
+	public Campo(){
+		
+	}
 	
 	public Campo(String direccion,EstadoCampo estado) {
 		this.direccion = direccion;
@@ -49,6 +50,10 @@ public class Campo {
 	}
 	public void setNombre(String direccion) {
 		this.direccion = direccion;
+	}
+	
+	public EstadoCampo getEstado() {
+		return this.estado;
 	}
 
 }

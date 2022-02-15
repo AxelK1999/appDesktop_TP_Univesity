@@ -29,8 +29,10 @@ public class Suelo {
 	@OneToMany(mappedBy = "sueloDeLote",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH} )
 	private List<Lote> lotes;
     
-	@OneToMany(mappedBy = "sueloParaCultivo",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "sueloParaCultivo",cascade = {CascadeType.PERSIST})
 	private List<Cultivo> cultivosConSuelo;
+	
+	public Suelo() {}
 	
 	public Suelo(String caractersticasSuelo) {
 		this.caractersticasSuelo = caractersticasSuelo;

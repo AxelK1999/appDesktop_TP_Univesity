@@ -16,30 +16,34 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "detalleProyecto")
+@Table(name = "detalle_proyecto")
 public class DetalleProyecto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pk_nro_detalle")
 	private int nroDetalle;
-	@Column(name = "fechaInicio")
+	@Column(name = "fecha_inicio")
 	private Date fechaInicio;
-	@Column(name = "fechaFin")
+	@Column(name = "fecha_fin")
 	private Date fechaFinalizacion;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	@JoinColumn(name = "fk_nro_proyecto")
 	private Proyecto proyecto;
 	
-	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "fk_nro_laboreo")
 	private Laboreo laboreo;
 	
 	
-	@ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinTable(name="relacion_situacionanormal_detalleproyecto", joinColumns={@JoinColumn(name="fk_nro_detalle")}, inverseJoinColumns={@JoinColumn(name="fk_nro_incidencia")})
 	private List<SituacionAnormal> situacionesAnormales;
+	
+	public DetalleProyecto() {
+
+	}
 	
 	public DetalleProyecto(Date fechaInicio, Date fechaFinalizacion,Proyecto proyecto, Laboreo laboreo) {
 		this.fechaInicio = fechaInicio;
@@ -66,5 +70,11 @@ public class DetalleProyecto {
 	public void setFechaFinalizacion(Date fechaFinalizacion) {
 		this.fechaFinalizacion = fechaFinalizacion;
 	}
+	
+	public Laboreo getLaboreo() {
+		return this.laboreo;
+	}
+	
+	//TODO
 	
 }

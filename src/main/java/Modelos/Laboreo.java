@@ -23,20 +23,23 @@ public class Laboreo {
 	private int nroLaboreo;
 	@Column(name = "estapa")
 	private String etapaLaboreo;
-	@Column(name = "dierccion")
-	private String direccionLaboreo;
+	@Column(name = "caracteristicas")
+	private String caracteristicasLaboreo;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "fk_nro_cultivo")
 	private Cultivo laboreoDeCultivo;
 	
-	@OneToMany(mappedBy = "laboreo",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@OneToMany(mappedBy = "laboreo",cascade = {CascadeType.PERSIST})
 	private List<DetalleProyecto> detallesProyecto;
 	
+	public Laboreo() {
+		
+	}
 	
-	public Laboreo(String etapaLaboreo, String direccionLaboreo,Cultivo cultivo) {
+	public Laboreo(String etapaLaboreo, String caractLaboreo,Cultivo cultivo) {
 		this.etapaLaboreo = etapaLaboreo;
-		this.direccionLaboreo = direccionLaboreo;
+		this.caracteristicasLaboreo = caractLaboreo;
 		laboreoDeCultivo = cultivo;
 		
 	}
@@ -57,12 +60,12 @@ public class Laboreo {
 		this.etapaLaboreo = etapaLaboreo;
 	}
 
-	public String getDireccionLaboreo() {
-		return direccionLaboreo;
+	public String getCaracteristicasLaboreo() {
+		return caracteristicasLaboreo;
 	}
 
-	public void setDireccionLaboreo(String direccionLaboreo) {
-		this.direccionLaboreo = direccionLaboreo;
+	public void setCaracteristicasLaboreo(String direccionLaboreo) {
+		this.caracteristicasLaboreo = direccionLaboreo;
 	}
 	
 	

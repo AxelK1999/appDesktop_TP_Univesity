@@ -26,17 +26,20 @@ public class Proyecto {
 	@Column(name = "motivo_cancelar")
 	private String motivoCancelar;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	//------ Consulta HQL trae con el proyecto tambien su cultivo y lote --------------
+	
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "fk_nro_lote")
 	private Lote loteConProyecto;
 	
-	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name = "fk_nro_cultivo")
 	private Cultivo cultivoEnProyecto;
 	
-	@OneToMany(mappedBy = "proyecto",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "proyecto",cascade = {CascadeType.REMOVE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private List<DetalleProyecto> detalleProyecto;
 	
+	public Proyecto() {}
 	
 	public Proyecto(String estado, Lote loteConProyecto, Cultivo cultivoEnProyecto) {
 		this.estado = estado;
@@ -62,6 +65,15 @@ public class Proyecto {
 	}
 	public void setMotivoCancelar(String motivoCancelar) {
 		this.motivoCancelar = motivoCancelar;
+	}
+	
+	
+	public Cultivo getCultivo(){
+		return this.cultivoEnProyecto;
+	}
+	
+	public Lote getLote() {
+		return this.loteConProyecto;
 	}
 	
 	

@@ -1,9 +1,11 @@
 package Controladores;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import DAO_Modelos.Dao_BD;
 import Modelos.Campo;
+import Modelos.EstadoCampo;
 import Modelos.Lote;
 import Modelos.Proyecto;
 import Modelos.Suelo;
@@ -22,14 +24,13 @@ public class ControladorLote {
     	return dao_CRUD.actualizar(lote);
     }
     
-    public int agregarLote(float superficie, int nro_campo,int nro_suelo) {
+    public int agregarLote(float superficie, int nro_campo,int nro_suelo) {//TODO
     	Campo C = new Campo(null, null);
     	C.setNroCampo(nro_campo);
     	Suelo S = new Suelo(null);
     	S.setNroSuelo(nro_suelo);
     	//TODO
     	return dao_CRUD.agregar(new Lote(superficie, C, S));
-      
     }
     
     
@@ -41,11 +42,11 @@ public class ControladorLote {
     }
     
     public Lote consultarLote(int nro_Lote) {
-    	return (Lote)dao_CRUD.obtener(nro_Lote);
+    	return (Lote)dao_CRUD.obtener(nro_Lote,Lote.class);
     }
     
-    public LinkedList<Object> consultar(Object o){
-		return dao_CRUD.obtenerTodos(o);
+    public java.util.List consultar(String filtro){
+		return dao_CRUD.obtenerTodos(new Lote(),filtro);
 	}
     
     public int unirLote(Lote loteDestino,Lote otroLote) {
@@ -53,5 +54,13 @@ public class ControladorLote {
     }
     public int separarLote(Lote lote) {
     	return 1; ///TODO
+    }
+    
+    public long cantidadLotes() {
+    	return dao_CRUD.countElement(new Lote(), " ");
+    }
+    
+    public List consultaNativa(String query) {
+    	return dao_CRUD.consultaNativa(new Lote(),query);
     }
 }

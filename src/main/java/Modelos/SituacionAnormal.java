@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "situacionanormal")
+@Table(name = "situacion_anormal")
 public class SituacionAnormal {
 	
 	@Id
@@ -22,9 +22,10 @@ public class SituacionAnormal {
 	@Column(name = "nombre")
 	private String nombreIncidencia;
 	
-	 @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},mappedBy = "situacionesAnormales")
+	 @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.REFRESH},mappedBy = "situacionesAnormales")
 	 private List<DetalleProyecto> detallesProyecto;
 	
+	 public SituacionAnormal() {}
 	 
 	public SituacionAnormal(String nombreIncidencia) {
 		this.nombreIncidencia = nombreIncidencia;

@@ -2,8 +2,7 @@ package Controladores;
 
 import Modelos.Suelo;
 
-import java.util.LinkedList;
-
+import java.util.List;
 import DAO_Modelos.Dao_BD;
 import Modelos.Cultivo;
 import Modelos.Laboreo;
@@ -33,7 +32,7 @@ public class ControladorCultivos {
     }
     
     public Cultivo consultarCultivo(int nro_Cultivo) {
-    	return (Cultivo)dao_CRUD.obtener(nro_Cultivo);
+    	return (Cultivo)dao_CRUD.obtener(nro_Cultivo,Cultivo.class);
     }
     
     public int agregarTipoSuelo(String tipoSuelo) {
@@ -52,7 +51,7 @@ public class ControladorCultivos {
     }
     
     public Suelo consultarTipoSuelo(int nro_Suelo) {
-    	return (Suelo)dao_CRUD.obtener(nro_Suelo);
+    	return (Suelo)dao_CRUD.obtener(nro_Suelo,Suelo.class);
     }
     
     
@@ -70,8 +69,12 @@ public class ControladorCultivos {
     	return dao_CRUD.eliminar(L);
     }
     
-    public LinkedList<Object> consultar(Object o){
-		return dao_CRUD.obtenerTodos(o);
+    public Object[] obtenerLaboreoInicialDeCultivo(int pk_cultivo) {
+         return	dao_CRUD.consultaNativa(new Laboreo(), "select * from laboreo as L where L.etapa = '1' and L.fk_nro_cultivo = " + pk_cultivo).get(0);
+    }
+    
+    public List consultar(Object o,String filtro){
+		return dao_CRUD.obtenerTodos(o,filtro);
 	}
     
 }

@@ -1,7 +1,6 @@
 package Controladores;
 
-import java.util.LinkedList;
-
+import java.util.*;
 import DAO_Modelos.Dao_BD;
 import Modelos.Campo;
 import Modelos.EstadoCampo;
@@ -15,10 +14,20 @@ public class ControladorCampo {
     }
     
     public int agregarCampo(String direccion, int nro_estado) {
-    	EstadoCampo estado = new EstadoCampo(null);
+    	EstadoCampo estado = new EstadoCampo("Creado");
     	estado.setIdEstado(nro_estado);
-    	return dao_CRUD.agregar(new Campo(direccion, estado));
+    	
+    	if(direccion == null)
+    		return -4;
+    	if(direccion.length() > 50)
+			return -11;// longitud demasado largo
+		if(dao_CRUD.countElement(new Campo(), "where direccion = '"+direccion+"'") > 0)
+			return -10;
+    	
+		return dao_CRUD.agregar(new Campo(direccion, estado));
+    	
     }
+    
     public int eliminarCampo(int nro_Campo) {
     	Campo C = new Campo(null,null);
     	C.setNroCampo(nro_Campo);
@@ -31,7 +40,7 @@ public class ControladorCampo {
     }
     
     public Campo consultarCampo(int nro_Campo) {
-    	return (Campo)dao_CRUD.obtener(nro_Campo);
+    	return (Campo)dao_CRUD.obtener(nro_Campo,Campo.class);
     }
     
     public int agregarEstadoCampo(String estado) {
@@ -48,7 +57,20 @@ public class ControladorCampo {
     	return dao_CRUD.eliminar(e);
     }
     
-    public LinkedList<Object> consultar(Object o){
-		return dao_CRUD.obtenerTodos(o);
+    public  java.util.List consultar(Object o,String filtro){
+    	return dao_CRUD.obtenerTodos(o,filtro);
 	}
+    
+    public long numeroCampos(String filtro){
+    	return dao_CRUD.countElement(new Campo(), filtro);
+    }
+    
+    public List consultarEstadosCampo() {
+    	return (List) dao_CRUD.obtenerTodos(new EstadoCampo()," ");
+    }
+    
+    public List<Object[]> cantidadLotesEnCampo(int nroCampo) {
+    	return dao_CRUD.consultaNativa(new Campo(),"select campo.pk_nro_campo, count(pk_nro_campo)as cantidad from campo inner join lotes on campo.pk_nro_campo = lotes.fk_nro_campo "
+    			+ "group by pk_nro_campo, campo.pk_nro_campo having campo.pk_nro_campo = " + nroCampo );
+    }
 }

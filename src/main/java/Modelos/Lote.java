@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
-
 @Entity
 @Table(name = "lotes")
 public class Lote {
@@ -19,15 +17,15 @@ public class Lote {
 	private float superficie;
 	
 	 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="fk_nro_campo")
 	private Campo campoDeLote;
 	
-	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@ManyToOne(cascade = {CascadeType.PERSIST})//TODO
 	@JoinColumn(name="fk_nro_suelo")
 	private Suelo sueloDeLote;
 	
-	@OneToMany(mappedBy = "loteConProyecto",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "loteConProyecto",cascade = {CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.REMOVE})
 	List<Proyecto> proyectosDeLote;
 	
 	public Campo getCampoDeLote() {
@@ -39,6 +37,10 @@ public class Lote {
 		this.campoDeLote = campoDeLote;
 	}
 
+	public Lote() {
+		
+	}
+	
 	public Lote(float superficie, Campo campoDeLote,Suelo sueloLote) {
 		this.superficie = superficie;
 		this.campoDeLote = campoDeLote;
@@ -61,6 +63,11 @@ public class Lote {
 	}
 	public void setSuperficie(float superficie) {
 		this.superficie = superficie;
+	}
+	
+	
+	public Suelo getSuelo() {
+		return sueloDeLote;
 	}
 	
 }

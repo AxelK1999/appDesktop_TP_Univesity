@@ -26,16 +26,20 @@ public class Cultivo {
 	@Column(name = "caracteristicas")
 	private String caracteristicasCultivo;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "fk_nro_suelo")
 	private Suelo sueloParaCultivo;
 	
 	
-	@OneToMany(mappedBy = "laboreoDeCultivo",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "laboreoDeCultivo",cascade = {CascadeType.PERSIST})//TODO
 	private List<Laboreo> laboreos;
 	
-	@OneToMany(mappedBy = "cultivoEnProyecto",cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@OneToMany(mappedBy = "cultivoEnProyecto",cascade = CascadeType.PERSIST)
 	List<Proyecto> proyectosConEsteCultivo;
+	
+	public Cultivo() {
+		
+	}
 	
 	public Cultivo(String nombreCultivo, String caracteristicasCultivo,Suelo sueloQueTendra) {
 		this.nombreCultivo = nombreCultivo;
