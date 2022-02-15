@@ -23,7 +23,7 @@ public class Principal_main {
 
 	public static void main(String[] args) {
 		
-		MenuPrincipal menuPrincipal = new MenuPrincipal(new ControladorProyectosLote(),new ControladorCampo(),new ControladorCultivos(),new ControladorLote());
+		MenuPrincipal menuPrincipal = new MenuPrincipal(/*new ControladorProyectosLote(),new ControladorCampo(),new ControladorCultivos(),new ControladorLote()*/);
 		menuPrincipal.setVisible(true);
 
 	}

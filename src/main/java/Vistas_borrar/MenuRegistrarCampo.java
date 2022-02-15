@@ -1,4 +1,4 @@
-package Vistas;
+package Vistas_borrar;
 
 import Controladores.ControladorCampo;
 import Controladores.ControladorCultivos;
@@ -111,14 +111,14 @@ public class MenuRegistrarCampo extends javax.swing.JFrame {
       
         //TODO
         if(controladorCampo.agregarCampo(dirCam,1) == 1){  //1--> clave de estado Inicial
-            txtRet.setText("Operación Exitosa");
+            txtRet.setText("Operaciï¿½n Exitosa");
         }else{
-            txtRet.setText("Operación Fallida. Reintente por favor.");
+            txtRet.setText("Operaciï¿½n Fallida. Reintente por favor.");
         }
     }//GEN-LAST:event_btnRegCamActionPerformed
 
     private void btnVolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolActionPerformed
-        new MenuPrincipal(new ControladorProyectosLote(), controladorCampo, new ControladorCultivos(), controladorLote).setVisible(true);
+        new MenuPrincipal_borrar(new ControladorProyectosLote(), controladorCampo, new ControladorCultivos(), controladorLote).setVisible(true);
         dispose();
    
     }//GEN-LAST:event_btnVolActionPerformed

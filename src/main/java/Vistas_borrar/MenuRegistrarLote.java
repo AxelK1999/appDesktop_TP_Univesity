@@ -1,4 +1,4 @@
-package Vistas;
+package Vistas_borrar;
 
 import Controladores.ControladorCampo;
 import Controladores.ControladorCultivos;
@@ -36,9 +36,9 @@ public class MenuRegistrarLote extends javax.swing.JFrame {
 
         jLabel2.setText("Superficie del Lote");
 
-        jLabel3.setText("Número de Campo");
+        jLabel3.setText("Nï¿½mero de Campo");
 
-        jLabel4.setText("Número de Suelo");
+        jLabel4.setText("Nï¿½mero de Suelo");
 
         btnRegLot.setText("REGISTRAR");
         btnRegLot.addActionListener(new java.awt.event.ActionListener() {
@@ -124,14 +124,14 @@ public class MenuRegistrarLote extends javax.swing.JFrame {
         numSue = Integer.parseInt(txtNumSue.getText());
   
         if( controladorLote.agregarLote(supLot,numCam ,numSue) == 1){
-            txtRet.setText("Operación Exitosa");
+            txtRet.setText("Operaciï¿½n Exitosa");
         }else{
-            txtRet.setText("Operación Fallida. Reintente por favor.");
+            txtRet.setText("Operaciï¿½n Fallida. Reintente por favor.");
         }
     }//GEN-LAST:event_btnRegLotActionPerformed
 
     private void btnVolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolActionPerformed
-        new MenuPrincipal(new ControladorProyectosLote(),new ControladorCampo() ,new ControladorCultivos(),controladorLote).setVisible(true);
+        new MenuPrincipal_borrar(new ControladorProyectosLote(),new ControladorCampo() ,new ControladorCultivos(),controladorLote).setVisible(true);
         dispose();
         
     }//GEN-LAST:event_btnVolActionPerformed

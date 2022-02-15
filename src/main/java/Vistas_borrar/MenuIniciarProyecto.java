@@ -1,7 +1,6 @@
-package Vistas;
+package Vistas_borrar;
 
 import Controladores.*;
-import Vistas.*;
 
 
 public class MenuIniciarProyecto extends javax.swing.JFrame {
@@ -28,9 +27,9 @@ public class MenuIniciarProyecto extends javax.swing.JFrame {
 
         jLabel1.setText("INICIAR NUEVO PROYECTO");
 
-        jLabel2.setText("Número de Lote");
+        jLabel2.setText("Nï¿½mero de Lote");
 
-        jLabel3.setText("Número del Cultivo");
+        jLabel3.setText("Nï¿½mero del Cultivo");
 
         btnIniPro.setText("INICIAR");
         btnIniPro.addActionListener(new java.awt.event.ActionListener() {
@@ -105,17 +104,17 @@ public class MenuIniciarProyecto extends javax.swing.JFrame {
         numCul = Integer.parseInt(txtNumCul.getText());
         
         controladorProyectos.agregarProyecto("Inicial", numLot, numCul);
-        //pasar parámetros al controlador
+        //pasar parï¿½metros al controlador
         
         if(ret == 1){
-            txtRet.setText("Operación Exitosa");
+            txtRet.setText("Operaciï¿½n Exitosa");
         }else{
-            txtRet.setText("Operación Fallida. Reintente por favor.");
+            txtRet.setText("Operaciï¿½n Fallida. Reintente por favor.");
         }
     }//GEN-LAST:event_btnIniProActionPerformed
 
     private void btnVolActionPerformed(java.awt.event.ActionEvent evt) {
-        new MenuPrincipal(controladorProyectos,new ControladorCampo(),new ControladorCultivos(),new ControladorLote()).setVisible(true);
+        new MenuPrincipal_borrar(controladorProyectos,new ControladorCampo(),new ControladorCultivos(),new ControladorLote()).setVisible(true);
         dispose();
         
     }
