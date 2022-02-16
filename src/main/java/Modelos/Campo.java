@@ -48,7 +48,7 @@ public class Campo {
 	public String getDireccion() {
 		return direccion;
 	}
-	public void setNombre(String direccion) {
+	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 	

@@ -33,6 +33,18 @@ public class ControladorCampo {
     	C.setNroCampo(nro_Campo);
     	return dao_CRUD.eliminar(C);
     }
+    
+    public int actualizarDireccionCampo(int nro_Campo,String direccion){
+        
+       Campo C = consultarCampo(nro_Campo);
+       
+       if(C == null)
+           return -1;
+       
+        C.setDireccion(direccion);
+        return dao_CRUD.actualizar(C);
+        
+    }
     public int actualizarCampo(int nro_Campo,String direccion,EstadoCampo estdo) {
     	Campo C = new Campo(direccion, estdo);
     	C.setNroCampo(nro_Campo);
@@ -57,8 +69,8 @@ public class ControladorCampo {
     	return dao_CRUD.eliminar(e);
     }
     
-    public  java.util.List consultar(Object o,String filtro){
-    	return dao_CRUD.obtenerTodos(o,filtro);
+    public  java.util.List consultar(String filtro){
+    	return dao_CRUD.obtenerTodos(new Campo(),filtro);
 	}
     
     public long numeroCampos(String filtro){

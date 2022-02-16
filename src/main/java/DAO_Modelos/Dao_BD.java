@@ -14,6 +14,7 @@ import org.hibernate.service.internal.SessionFactoryServiceRegistryBuilderImpl;
 import java.util.*;
 
 import javax.imageio.spi.ServiceRegistry;
+import javax.swing.JOptionPane;
 
 	
 public class Dao_BD /*implements DAO_CRUD_Generica<Object>*/ {
@@ -26,10 +27,11 @@ public class Dao_BD /*implements DAO_CRUD_Generica<Object>*/ {
 		try {
 			
 			configuracionConexion = new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(C.getClass()).buildSessionFactory();
+                        System.out.print("Entraaaa");
 			conexionBD = configuracionConexion.openSession();
 			
 		}catch(ConfigurationException |  SessionException E) {
-			//TODO
+                        JOptionPane.showInputDialog("Se a producido un error al establecer la conexion a la BD [Error: "+E.getMessage()+" ]");
 			return -1;
 		}
 		return 1;
@@ -128,19 +130,21 @@ public class Dao_BD /*implements DAO_CRUD_Generica<Object>*/ {
 		    List<Object> result;
         	
     		try {
-    			
+    		
     			if(abrirConexion(clase.getClass()) == -1)
     				return null;
     			
-    			conexionBD.beginTransaction();
+                        conexionBD.beginTransaction();
     			result = conexionBD.createQuery("FROM " + clase.getClass().getSimpleName()+" "+filtro).list();
     			conexionBD.getTransaction().commit();
     		
     		}catch(TransactionException E) {
     			return null;
     		}finally {
+                    if(conexionBD != null && configuracionConexion != null){
     			conexionBD.close();//TODO
     			configuracionConexion.close();
+                    }
     		}
     	     return result;
         }
