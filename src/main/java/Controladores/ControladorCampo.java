@@ -45,8 +45,10 @@ public class ControladorCampo {
         return dao_CRUD.actualizar(C);
         
     }
-    public int actualizarCampo(int nro_Campo,String direccion,EstadoCampo estdo) {
-    	Campo C = new Campo(direccion, estdo);
+    public int actualizarCampo(int nro_Campo,String direccion,int estado) {
+    	EstadoCampo est = new EstadoCampo();
+        est.setIdEstado(estado);
+        Campo C = new Campo(direccion,est);
     	C.setNroCampo(nro_Campo);
     	return dao_CRUD.actualizar(C);
     }

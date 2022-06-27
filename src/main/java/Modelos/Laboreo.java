@@ -21,7 +21,7 @@ public class Laboreo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "pk_nro_laboreo")
 	private int nroLaboreo;
-	@Column(name = "estapa")
+	@Column(name = "etapa")
 	private String etapaLaboreo;
 	@Column(name = "caracteristicas")
 	private String caracteristicasLaboreo;
