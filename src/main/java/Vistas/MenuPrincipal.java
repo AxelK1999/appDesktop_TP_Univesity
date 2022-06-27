@@ -38,6 +38,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         item_registrar_tds = new javax.swing.JMenuItem();
         item_registrar_campo = new javax.swing.JMenuItem();
         item_actualizar_campo = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menu_P = new javax.swing.JMenu();
         item_iniciar_p = new javax.swing.JMenuItem();
         item_cancelar_p = new javax.swing.JMenuItem();
@@ -111,6 +112,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         menu_TdSyC.add(item_actualizar_campo);
+
+        jMenuItem1.setText("Listar Campos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menu_TdSyC.add(jMenuItem1);
 
         jMenuBar1.add(menu_TdSyC);
 
@@ -241,7 +250,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void item_cancelar_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cancelar_pActionPerformed
         IF_cancelar_p ventana_cancelar_p = new IF_cancelar_p();
-        
         fondo_MenuPrincipal.removeAll();
         fondo_MenuPrincipal.add(ventana_cancelar_p);
         actualizarVentana();
@@ -271,6 +279,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         fondo_MenuPrincipal.add(ventana_listar_p);
         actualizarVentana();
     }//GEN-LAST:event_item_listar_pActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        IF_listar_campos ventana_listar_campos = new IF_listar_campos();
+        fondo_MenuPrincipal.removeAll();
+        fondo_MenuPrincipal.add(ventana_listar_campos);
+        actualizarVentana();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,6 +337,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem item_separar_lotes;
     private javax.swing.JMenuItem item_unir_lotes;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menu_L;
     private javax.swing.JMenu menu_P;
     private javax.swing.JMenu menu_TdSyC;

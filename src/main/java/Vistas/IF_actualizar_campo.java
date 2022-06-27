@@ -46,6 +46,7 @@ public class IF_actualizar_campo extends javax.swing.JPanel {
         jTextFieldDireccionCampo = new javax.swing.JTextField();
         btnActualzarCampo = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        txtRes = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(51, 51, 51));
 
@@ -84,6 +85,8 @@ public class IF_actualizar_campo extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Actualizar Direccion del Campo");
 
+        txtRes.setText(" ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,7 +104,10 @@ public class IF_actualizar_campo extends javax.swing.JPanel {
                                 .addComponent(jComboBoxSelectCampo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(287, 287, 287)
-                        .addComponent(btnActualzarCampo)))
+                        .addComponent(btnActualzarCampo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(txtRes)))
                 .addContainerGap(234, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,7 +125,9 @@ public class IF_actualizar_campo extends javax.swing.JPanel {
                 .addComponent(jTextFieldDireccionCampo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnActualzarCampo)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(txtRes)
+                .addContainerGap(153, Short.MAX_VALUE))
         );
 
         jLabel1.getAccessibleContext().setAccessibleDescription("");
@@ -146,7 +154,10 @@ public class IF_actualizar_campo extends javax.swing.JPanel {
             if(matcher.find()){
                 int id_campo = Integer.parseInt(matcher.group(1));
                 System.out.println(id_campo);
-                ctrlcampo.actualizarCampo(id_campo,jTextFieldDireccionCampo.getText(),nro_estado);
+                int res = ctrlcampo.actualizarCampo(id_campo,jTextFieldDireccionCampo.getText(),nro_estado);
+                if(res==1){
+                    txtRes.setText("¡Actualización Exitosa!");
+                }
                 // PENDING Controlar el correcto ingreso de la nueva direccion
             }else{
                 System.out.println("No anda tu mierda ID");
@@ -164,5 +175,6 @@ public class IF_actualizar_campo extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextFieldDireccionCampo;
+    private javax.swing.JLabel txtRes;
     // End of variables declaration//GEN-END:variables
 }

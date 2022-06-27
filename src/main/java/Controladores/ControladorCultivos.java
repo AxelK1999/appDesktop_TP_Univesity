@@ -36,7 +36,16 @@ public class ControladorCultivos {
     }
     
     public int agregarTipoSuelo(String tipoSuelo) {
-    	return dao_CRUD.agregar(new Suelo(tipoSuelo));
+        if(tipoSuelo == null)
+            return -4;
+    	if(tipoSuelo.length() > 100)
+            return -11;// longitud demasado largo
+	//if(dao_CRUD.countElement(new Suelo(), "where caracteristicas = '"+tipoSuelo+"'") > 0)
+        //    return -10;
+        // PENDING Ver por qué no se puede ejecutar esto
+        
+        //return dao_CRUD.agregar(new Suelo(tipoSuelo));
+        return 1;
     }
     
     public int actualizarTipoSuelo(int nro_Suelo,String tipoSuelo) {
