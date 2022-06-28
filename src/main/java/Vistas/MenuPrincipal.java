@@ -35,7 +35,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         item_separar_lotes = new javax.swing.JMenuItem();
         item_actualizar_lote = new javax.swing.JMenuItem();
         menu_TdSyC = new javax.swing.JMenu();
-        item_registrar_tds = new javax.swing.JMenuItem();
         item_registrar_campo = new javax.swing.JMenuItem();
         item_actualizar_campo = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -87,15 +86,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(menu_L);
 
-        menu_TdSyC.setText("Tipos de Suelo y Campos");
-
-        item_registrar_tds.setText("Registrar Tipo de Suelo");
-        item_registrar_tds.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                item_registrar_tdsActionPerformed(evt);
-            }
-        });
-        menu_TdSyC.add(item_registrar_tds);
+        menu_TdSyC.setText("Campos");
 
         item_registrar_campo.setText("Registrar Campo");
         item_registrar_campo.addActionListener(new java.awt.event.ActionListener() {
@@ -220,13 +211,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         actualizarVentana();
     }//GEN-LAST:event_item_actualizar_loteActionPerformed
 
-    private void item_registrar_tdsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_registrar_tdsActionPerformed
-        IF_registrar_tds ventana_registrar_tds = new IF_registrar_tds();
-         fondo_MenuPrincipal.removeAll();
-        fondo_MenuPrincipal.add(ventana_registrar_tds);
-        actualizarVentana();
-    }//GEN-LAST:event_item_registrar_tdsActionPerformed
-
     private void item_registrar_campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_registrar_campoActionPerformed
         IF_registrar_campo ventana_registrar_campo = new IF_registrar_campo();
         fondo_MenuPrincipal.removeAll();
@@ -333,7 +317,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem item_registrar_campo;
     private javax.swing.JMenuItem item_registrar_incidencia;
     private javax.swing.JMenuItem item_registrar_lote;
-    private javax.swing.JMenuItem item_registrar_tds;
     private javax.swing.JMenuItem item_separar_lotes;
     private javax.swing.JMenuItem item_unir_lotes;
     private javax.swing.JMenuBar jMenuBar1;

@@ -24,12 +24,11 @@ public class ControladorLote {
     	return dao_CRUD.actualizar(lote);
     }
     
-    public int agregarLote(float superficie, int nro_campo,int nro_suelo) {//TODO
-    	Campo C = new Campo(null, null);
+    public int agregarLote(float superficie, int nro_campo,int nro_suelo) {
+        Campo C = new Campo(null, null);
     	C.setNroCampo(nro_campo);
     	Suelo S = new Suelo(null);
     	S.setNroSuelo(nro_suelo);
-    	//TODO
     	return dao_CRUD.agregar(new Lote(superficie, C, S));
     }
     

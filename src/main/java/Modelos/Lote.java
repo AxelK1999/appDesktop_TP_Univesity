@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "lotes")
+@Table(name = "lote")
 public class Lote {
 
 	@Id
@@ -21,7 +21,7 @@ public class Lote {
 	@JoinColumn(name="fk_nro_campo")
 	private Campo campoDeLote;
 	
-	@ManyToOne(cascade = {CascadeType.PERSIST})//TODO
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})//TODO
 	@JoinColumn(name="fk_nro_suelo")
 	private Suelo sueloDeLote;
 	

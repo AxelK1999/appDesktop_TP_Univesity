@@ -45,17 +45,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="menu_TdSyC">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tipos de Suelo y Campos"/>
+            <Property name="text" type="java.lang.String" value="Campos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="item_registrar_tds">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Registrar Tipo de Suelo"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="item_registrar_tdsActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="item_registrar_campo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Registrar Campo"/>
