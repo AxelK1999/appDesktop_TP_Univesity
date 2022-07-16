@@ -45,8 +45,8 @@ public class ControladorLote {
     }
     
     public java.util.List consultar(String filtro){
-		return dao_CRUD.obtenerTodos(new Lote(),filtro);
-	}
+        return dao_CRUD.obtenerTodos(new Lote(),filtro);
+    }
     
     public int unirLote(Lote loteDestino,Lote otroLote) {
     	return 1; //TODO

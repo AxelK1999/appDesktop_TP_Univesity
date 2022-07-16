@@ -49,7 +49,9 @@ Dao_BD dao_CRUD;
 		return (Proyecto)dao_CRUD.obtener(nro_Proyecto,Proyecto.class);
 	}
 	
-	
+	public java.util.List consultar(Object o,String filtro){
+		return dao_CRUD.obtenerTodos(o,filtro);
+	}
 	
 	public int agregarDetalle(Date fechaInicio,int nroLaboreo, int nroProyecto) {
 		
@@ -97,8 +99,8 @@ Dao_BD dao_CRUD;
 		return (SituacionAnormal)dao_CRUD.obtener(nro_SituacionAnoraml,SituacionAnormal.class);
 	}
 	
-	public java.util.List consultar(Object o,String filtro){
-		return dao_CRUD.obtenerTodos(o,filtro);
+	public java.util.List consultarTodos(Object o,String filtro){
+            return dao_CRUD.obtenerTodos(o,filtro);
 	}
     
 	public List<Object[]> consultarDetallesDeProyecto(int nroProyect) {

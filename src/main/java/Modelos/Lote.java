@@ -58,7 +58,7 @@ public class Lote {
 	}
 
 
-	public double getSuperficie() {
+	public float getSuperficie() {
 		return superficie;
 	}
 	public void setSuperficie(float superficie) {
@@ -70,4 +70,8 @@ public class Lote {
 		return sueloDeLote;
 	}
 	
+        public boolean equals(Lote obj){
+            return (this.nroLote==obj.nroLote && this.superficie==obj.superficie && this.campoDeLote==obj.campoDeLote && this.sueloDeLote==obj.sueloDeLote);
+        }
+        
 }
