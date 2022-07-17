@@ -4,8 +4,11 @@ import Controladores.ControladorCampo;
 import Controladores.ControladorCultivos;
 import Controladores.ControladorLote;
 import Modelos.Campo;
+import Modelos.Lote;
 import Modelos.Suelo;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class IF_actualizar_lote extends javax.swing.JPanel {
 
@@ -57,7 +60,7 @@ public class IF_actualizar_lote extends javax.swing.JPanel {
         btn_actualizar_lote = new javax.swing.JButton();
         txtRes = new javax.swing.JLabel();
         btn_buscar_lote = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        txtC_S = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -106,7 +109,7 @@ public class IF_actualizar_lote extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setText("Seleccione Campo-Suelo");
+        txtC_S.setText("Seleccione Campo-Suelo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,7 +141,7 @@ public class IF_actualizar_lote extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(132, 132, 132)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel8)
+                                    .addComponent(txtC_S)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(19, 19, 19)
                                         .addComponent(btn_buscar_lote))))))
@@ -163,7 +166,7 @@ public class IF_actualizar_lote extends javax.swing.JPanel {
                 .addGap(9, 9, 9)
                 .addComponent(btn_buscar_lote)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
+                .addComponent(txtC_S)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -191,12 +194,81 @@ public class IF_actualizar_lote extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_supActionPerformed
 
     private void btn_actualizar_loteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizar_loteActionPerformed
-        // TODO add your handling code here:
+        
+        Pattern patronIdentificar = Pattern.compile("ID ([0-9]+)",Pattern.CASE_INSENSITIVE);
+        Matcher matcher1;
+        Matcher matcher2;
+        matcher1 = patronIdentificar.matcher((String) box_lote.getSelectedItem());
+        matcher2 = patronIdentificar.matcher((String) box_nuevo_tds.getSelectedItem());
+        if(matcher1.find() && matcher2.find()){
+            Lote loteselec = ctrllote.consultarLote(Integer.parseInt(matcher1.group(1)));
+            Suelo suelonuevo = ctrlcultivo.consultarTipoSuelo(Integer.parseInt(matcher2.group(1)));
+            try{
+                Float suping = Float.parseFloat(txt_sup.getText());
+                //PENDING control de errores ingreso sup y que sea mayor que cero
+                if(suping>0){
+                    int res = ctrllote.actualizarLote(loteselec.getNroLote(), suping, camposelec, suelonuevo);
+                    if(res==1){
+                        txtRes.setText("¡REGISTRADO EXITOSAMENTE!");
+                    }else{
+                        txtRes.setText("¡ERROR, vuelva a intentarlo!");
+                    }
+                }else{
+                    txtRes.setText("Superficie ingresada no válida. Intente de nuevo.");
+                }
+            }catch(Exception e){
+                System.out.println(e.getMessage());
+                txtRes.setText("Superficie ingresada no válida. Intente de nuevo.");
+            }
+        
+        }else{
+            System.out.println("Error box lotes");
+        }
+        
     }//GEN-LAST:event_btn_actualizar_loteActionPerformed
 
     private void btn_buscar_loteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscar_loteActionPerformed
         
-        
+        Pattern patronIdentificar = Pattern.compile("ID ([0-9]+)",Pattern.CASE_INSENSITIVE);
+        Matcher matcher;
+        matcher = patronIdentificar.matcher((String) box_campos.getSelectedItem());
+        if(matcher.find()){
+            camposelec = ctrlcampo.consultarCampo(Integer.parseInt(matcher.group(1)));
+            
+            matcher = patronIdentificar.matcher((String) box_tds.getSelectedItem());
+            if(matcher.find()){
+                sueloselec = ctrlcultivo.consultarTipoSuelo(Integer.parseInt(matcher.group(1)));
+                
+                List<Object[]> lote1list = ctrllote.consultaNativa("select * from lote where fk_nro_campo = "+ camposelec.getNroCampo() +" and fk_nro_suelo = " + sueloselec.getNroSuelo());
+                if(lote1list.size()>0){
+                    box_lote.setEnabled(true);
+                    box_nuevo_tds.setEnabled(true);
+                    txt_sup.setEditable(true);
+                    for(Object[] L : lote1list){
+                        box_lote.addItem("ID "+L[0]+" - SUP: "+L[1]);
+                    }
+                    
+                    box_nuevo_tds.removeAllItems();
+                    List<Object> suelolist = ctrlcultivo.consultar(new Suelo(),"");
+                    for( Object SueloConsultado : suelolist){
+                        box_nuevo_tds.addItem("ID "+((Suelo)SueloConsultado).getNroSuelo()+" - "+((Suelo)SueloConsultado).getCaractersticasSuelo());
+                    }
+                    
+                    txtC_S.setText("¡Combinación válida!");
+                    box_campos.setEnabled(false);
+                    box_tds.setEnabled(false);
+                    btn_buscar_lote.setEnabled(false);
+                    btn_actualizar_lote.setVisible(true);
+                }else{
+                    txtC_S.setText("La combinación no posee lotes");
+                }
+                
+            }else{
+                System.out.println("Error box suelo");
+            }
+        }else{
+            System.out.println("Error box campo");
+        }
         
     }//GEN-LAST:event_btn_buscar_loteActionPerformed
 
@@ -215,8 +287,8 @@ public class IF_actualizar_lote extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel txtC_S;
     private javax.swing.JLabel txtRes;
     private javax.swing.JTextField txt_sup;
     // End of variables declaration//GEN-END:variables

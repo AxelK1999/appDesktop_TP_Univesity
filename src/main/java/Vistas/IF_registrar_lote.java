@@ -149,6 +149,7 @@ public class IF_registrar_lote extends javax.swing.JPanel {
                 try{
                     //float suping = Float.parseFloat(txt_sup.getText());
                     //System.out.println(suping);
+                    //PENDING control de errores ingreso sup y que sea mayor que cero
                     
                     int res = ctrllote.agregarLote(Float.parseFloat(txt_sup.getText()), camposelec.getNroCampo(), sueloselec.getNroSuelo());
                     if(res==1){
