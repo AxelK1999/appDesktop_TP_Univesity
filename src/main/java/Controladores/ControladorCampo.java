@@ -73,7 +73,7 @@ public class ControladorCampo {
     
     public  java.util.List consultar(String filtro){
     	return dao_CRUD.obtenerTodos(new Campo(),filtro);
-	}
+    }
     
     public long numeroCampos(String filtro){
     	return dao_CRUD.countElement(new Campo(), filtro);
@@ -87,4 +87,13 @@ public class ControladorCampo {
     	return dao_CRUD.consultaNativa(new Campo(),"select campo.pk_nro_campo, count(pk_nro_campo)as cantidad from campo inner join lotes on campo.pk_nro_campo = lotes.fk_nro_campo "
     			+ "group by pk_nro_campo, campo.pk_nro_campo having campo.pk_nro_campo = " + nroCampo );
     }
+    
+    //AGREGADOS
+    
+    public  java.util.List obtenerCampos(){
+        return consultar("as C INNER JOIN C.estado ");
+    }
+    
+    
+    
 }

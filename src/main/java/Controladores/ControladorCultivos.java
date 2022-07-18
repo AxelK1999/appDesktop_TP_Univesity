@@ -83,7 +83,13 @@ public class ControladorCultivos {
     }
     
     public List consultar(Object o,String filtro){
-		return dao_CRUD.obtenerTodos(o,filtro);
-	}
+        return dao_CRUD.obtenerTodos(o,filtro);
+    }
+    
+    //AGREGADOS
+    
+    public  java.util.List obtenerSuelos(){
+        return consultar(new Suelo(),"");
+    }
     
 }

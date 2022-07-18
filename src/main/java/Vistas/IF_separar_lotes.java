@@ -22,13 +22,13 @@ public class IF_separar_lotes extends javax.swing.JPanel {
         initComponents();
         
         box_campos.removeAllItems();
-        List<Object> camposlist = ctrlcampo.consultar("as C INNER JOIN C.estado ");
+        List<Object> camposlist = ctrlcampo.obtenerCampos();
         for( Object CampoConsultado : camposlist){
             box_campos.addItem("ID "+((Campo)CampoConsultado).getNroCampo()+" - "+((Campo)CampoConsultado).getDireccion());
         }
         
         box_tds.removeAllItems();
-        List<Object> suelolist = ctrlcultivo.consultar(new Suelo(),"");
+        List<Object> suelolist = ctrlcultivo.obtenerSuelos();
         for( Object SueloConsultado : suelolist){
             box_tds.addItem("ID "+((Suelo)SueloConsultado).getNroSuelo()+" - "+((Suelo)SueloConsultado).getCaractersticasSuelo());
         }
@@ -175,7 +175,8 @@ public class IF_separar_lotes extends javax.swing.JPanel {
             if(matcherS.find()){
                 sueloselec = ctrlcultivo.consultarTipoSuelo(Integer.parseInt(matcherS.group(1)));
                 
-                List<Object[]> lote1list = ctrllote.consultaNativa("select * from lote where fk_nro_campo = "+ Integer.parseInt(matcherC.group(1)) +" and fk_nro_suelo = " + Integer.parseInt(matcherS.group(1)));
+                List<Object[]> lote1list = ctrllote.obtenerLotesPorC_S(Integer.parseInt(matcherC.group(1)),Integer.parseInt(matcherS.group(1)));
+                //consultaNativa("select * from lote where fk_nro_campo = "+ Integer.parseInt(matcherC.group(1)) +" and fk_nro_suelo = " + Integer.parseInt(matcherS.group(1)));
                 if(lote1list.size()>0){
                     
                     box_lote.removeAllItems();

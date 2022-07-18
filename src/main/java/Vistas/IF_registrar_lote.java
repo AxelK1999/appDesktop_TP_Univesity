@@ -17,13 +17,13 @@ public class IF_registrar_lote extends javax.swing.JPanel {
         initComponents();
         
         box_campos.removeAllItems();
-        List<Object> camposlist = ctrlcampo.consultar("as C INNER JOIN C.estado ");
+        List<Object> camposlist = ctrlcampo.obtenerCampos();
         for( Object CampoConsultado : camposlist){
             box_campos.addItem("ID "+((Campo)CampoConsultado).getNroCampo()+" - "+((Campo)CampoConsultado).getDireccion());
         }
         
         box_tds.removeAllItems();
-        List<Object> suelolist = ctrlcultivo.consultar(new Suelo(),"");
+        List<Object> suelolist = ctrlcultivo.obtenerSuelos();
         for( Object SueloConsultado : suelolist){
             box_tds.addItem("ID "+((Suelo)SueloConsultado).getNroSuelo()+" - "+((Suelo)SueloConsultado).getCaractersticasSuelo());
         }

@@ -11,7 +11,7 @@ public class IF_listar_campos extends javax.swing.JPanel {
     public IF_listar_campos() {
         initComponents();
         
-        List<Object> camposlist = ctrlcampo.consultar("as C INNER JOIN C.estado ");
+        List<Object> camposlist = ctrlcampo.obtenerCampos();
         for( Object CampoConsultado : camposlist){
             txtareaListadoCampos.setText(txtareaListadoCampos.getText()+"ID "+((Campo)CampoConsultado).getNroCampo()+" - "+((Campo)CampoConsultado).getDireccion()+" Est "+((Campo)CampoConsultado).getEstado().getNombreEstado()+"\n");
         }
@@ -46,7 +46,7 @@ public class IF_listar_campos extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(85, 85, 85))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -55,7 +55,7 @@ public class IF_listar_campos extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGap(73, 73, 73))
         );
     }// </editor-fold>//GEN-END:initComponents
 

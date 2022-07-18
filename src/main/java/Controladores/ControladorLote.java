@@ -62,4 +62,11 @@ public class ControladorLote {
     public List consultaNativa(String query) {
     	return dao_CRUD.consultaNativa(new Lote(),query);
     }
+    
+    //AGREGADOS
+    
+    public  java.util.List obtenerLotesPorC_S(int nroCampo, int nroSuelo){
+        return consultaNativa("select * from lote where fk_nro_campo = "+ nroCampo +" and fk_nro_suelo = " + nroSuelo);
+    }
+    
 }

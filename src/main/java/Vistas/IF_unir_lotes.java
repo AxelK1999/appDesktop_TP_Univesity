@@ -25,13 +25,13 @@ public class IF_unir_lotes extends javax.swing.JPanel {
         initComponents();
         
         box_campos.removeAllItems();
-        List<Object> camposlist = ctrlcampo.consultar("as C INNER JOIN C.estado ");
+        List<Object> camposlist = ctrlcampo.obtenerCampos();
         for( Object CampoConsultado : camposlist){
             box_campos.addItem("ID "+((Campo)CampoConsultado).getNroCampo()+" - "+((Campo)CampoConsultado).getDireccion());
         }
         
         box_tds.removeAllItems();
-        List<Object> suelolist = ctrlcultivo.consultar(new Suelo(),"");
+        List<Object> suelolist = ctrlcultivo.obtenerSuelos();
         for( Object SueloConsultado : suelolist){
             box_tds.addItem("ID "+((Suelo)SueloConsultado).getNroSuelo()+" - "+((Suelo)SueloConsultado).getCaractersticasSuelo());
         }
@@ -208,7 +208,7 @@ public class IF_unir_lotes extends javax.swing.JPanel {
                 L1.setSuperficie(L1.getSuperficie()+L2.getSuperficie());
                 
                 //REDIRECCION DE PROYECTOS VINCULADOS AL SEGUNDO LOTE UNIDO (debe ir dentro de un if)
-                List<Proyecto> proyectoslist = ctrlproyecto.consultarTodos(new Proyecto(), " as p where p.loteConProyecto.nroLote = "+L2.getNroLote());
+                List<Proyecto> proyectoslist = ctrlproyecto.obtenerProyectosDeLote(L2.getNroLote());
                 if(proyectoslist.size()>0){
                     for( Proyecto ProyectosConsultados : proyectoslist){
                         ctrlproyecto.actualizarProyecto(ProyectosConsultados.getNroProyecto(),ProyectosConsultados.getEstado(), ProyectosConsultados.getMotivoCancelar(), L1, ProyectosConsultados.getCultivo());
@@ -240,7 +240,7 @@ public class IF_unir_lotes extends javax.swing.JPanel {
             if(matcher.find()){
                 sueloselec = ctrlcultivo.consultarTipoSuelo(Integer.parseInt(matcher.group(1)));
                 
-                List<Object[]> lote1list = ctrllote.consultaNativa("select * from lote where fk_nro_campo = "+ camposelec.getNroCampo() +" and fk_nro_suelo = " + sueloselec.getNroSuelo());
+                List<Object[]> lote1list = ctrllote.obtenerLotesPorC_S(camposelec.getNroCampo(),sueloselec.getNroSuelo());
                 if(lote1list.size()>1){
                     box_primer_lote.setEnabled(true);
                     box_segundo_lote.setEnabled(true);
@@ -256,13 +256,6 @@ public class IF_unir_lotes extends javax.swing.JPanel {
                 }else{
                     txtC_S.setText("La combinación posee menos de 2 lotes");
                 }
-                
-                /*
-                List<Object> lote1list = ctrllote.consultar("where fk_nro_campo = "+camposelec.getNroCampo()+" and fk_nro_suelo = "+sueloselec.getNroSuelo());
-                //List<Object> lote1list = ctrllote.consultar(" where fk_nro_campo = 4 and fk_nro_suelo = 4");
-                for( Object Lote1Consultado : lote1list){
-                    box_primer_lote.addItem("ID "+((Lote)Lote1Consultado).getNroLote()+" - SUP: "+((Lote)Lote1Consultado).getSuperficie());
-                }*/
                 
             }else{
                 System.out.println("Error box suelo");

@@ -15,7 +15,7 @@ public class IF_actualizar_campo extends javax.swing.JPanel {
         initComponents();
         
         jComboBoxSelectCampo.removeAllItems();
-        List<Object> camposlist = ctrlcampo.consultar("as C INNER JOIN C.estado ");
+        List<Object> camposlist = ctrlcampo.obtenerCampos();
         for( Object CampoConsultado : camposlist){
             jComboBoxSelectCampo.addItem("ID "+((Campo)CampoConsultado).getNroCampo()+" - "+((Campo)CampoConsultado).getDireccion()+" Est "+((Campo)CampoConsultado).getEstado().getIdEstado());
         }
@@ -108,7 +108,7 @@ public class IF_actualizar_campo extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(309, 309, 309)
                         .addComponent(txtRes)))
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addGap(234, 234, 234))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,10 +160,10 @@ public class IF_actualizar_campo extends javax.swing.JPanel {
                 }
                 // PENDING Controlar el correcto ingreso de la nueva direccion
             }else{
-                System.out.println("No anda tu mierda ID");
+                System.out.println("No anda tu ID");
             }
         }else{
-            System.out.println("No anda tu mierda Est");
+            System.out.println("No anda tu Est");
         }
     }//GEN-LAST:event_btnActualzarCampoActionPerformed
 

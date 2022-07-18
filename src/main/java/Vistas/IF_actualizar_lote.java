@@ -22,13 +22,13 @@ public class IF_actualizar_lote extends javax.swing.JPanel {
         initComponents();
         
         box_campos.removeAllItems();
-        List<Object> camposlist = ctrlcampo.consultar("as C INNER JOIN C.estado ");
+        List<Object> camposlist = ctrlcampo.obtenerCampos();
         for( Object CampoConsultado : camposlist){
             box_campos.addItem("ID "+((Campo)CampoConsultado).getNroCampo()+" - "+((Campo)CampoConsultado).getDireccion());
         }
         
         box_tds.removeAllItems();
-        List<Object> suelolist = ctrlcultivo.consultar(new Suelo(),"");
+        List<Object> suelolist = ctrlcultivo.obtenerSuelos();
         for( Object SueloConsultado : suelolist){
             box_tds.addItem("ID "+((Suelo)SueloConsultado).getNroSuelo()+" - "+((Suelo)SueloConsultado).getCaractersticasSuelo());
         }
@@ -239,7 +239,7 @@ public class IF_actualizar_lote extends javax.swing.JPanel {
             if(matcher.find()){
                 sueloselec = ctrlcultivo.consultarTipoSuelo(Integer.parseInt(matcher.group(1)));
                 
-                List<Object[]> lote1list = ctrllote.consultaNativa("select * from lote where fk_nro_campo = "+ camposelec.getNroCampo() +" and fk_nro_suelo = " + sueloselec.getNroSuelo());
+                List<Object[]> lote1list = ctrllote.obtenerLotesPorC_S(camposelec.getNroCampo(),sueloselec.getNroSuelo());
                 if(lote1list.size()>0){
                     box_lote.setEnabled(true);
                     box_nuevo_tds.setEnabled(true);
