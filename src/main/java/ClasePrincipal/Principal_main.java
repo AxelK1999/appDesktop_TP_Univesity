@@ -1,31 +1,39 @@
 package ClasePrincipal;
 
-
-import java.util.List;
-
-
-
-/*import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;*/
-
-import Controladores.ControladorCampo;
-import Controladores.ControladorCultivos;
-import Controladores.ControladorLote;
-import Controladores.ControladorProyectosLote;
-import Modelos.Campo;
-import Modelos.EstadoCampo;
-import Modelos.Lote;
 import Vistas.MenuPrincipal;
 
 public class Principal_main {
 
-	public static void main(String[] args) {
-		
-		MenuPrincipal menuPrincipal = new MenuPrincipal(/*new ControladorProyectosLote(),new ControladorCampo(),new ControladorCultivos(),new ControladorLote()*/);
-		menuPrincipal.setVisible(true);
+    public static void main(String[] args) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
-	}
-	
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new MenuPrincipal().setVisible(true);
+            }
+        });
+    }
 }
