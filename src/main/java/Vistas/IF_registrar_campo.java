@@ -140,17 +140,20 @@ public class IF_registrar_campo extends javax.swing.JPanel {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String dir_ing = txtDireccion.getText();
-        int res = ctrlcampo.agregarCampo(dir_ing,1);
-        if(res==1){
-            txtRes.setText("¡Registro Exitoso!");
-        }else if(res==-4){
-            txtRes.setText("¡Error: Direccion ingresada nula!");
-        }else if(res==-10){
-            txtRes.setText("¡Error: Direccion ingresada ya existente!");
-        }else if(res==-11){
-            txtRes.setText("¡Error: Direccion ingresada muy larga!");
+        if(dir_ing.length()>0){
+            int res = ctrlcampo.agregarCampo(dir_ing,1);
+            if(res==1){
+                txtRes.setText("¡Registro Exitoso!");
+            }else if(res==-4){
+                txtRes.setText("¡Error: Direccion ingresada nula!");
+            }else if(res==-10){
+                txtRes.setText("¡Error: Direccion ingresada ya existente!");
+            }else if(res==-11){
+                txtRes.setText("¡Error: Direccion ingresada muy larga!");
+            }
+        }else{
+            txtRes.setText("¡Error: Direccion vacía!");
         }
-        //PENDING Controlar el ingreso de direccion valida
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
 

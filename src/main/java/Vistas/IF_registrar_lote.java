@@ -147,17 +147,19 @@ public class IF_registrar_lote extends javax.swing.JPanel {
                 Suelo sueloselec = ctrlcultivo.consultarTipoSuelo(Integer.parseInt(matcher.group(1)));
                 
                 try{
-                    //float suping = Float.parseFloat(txt_sup.getText());
-                    //System.out.println(suping);
-                    //PENDING control de errores ingreso sup y que sea mayor que cero
+                    float suping = Float.parseFloat(txt_sup.getText());
+                    if(suping>0){
                     
-                    int res = ctrllote.agregarLote(Float.parseFloat(txt_sup.getText()), camposelec.getNroCampo(), sueloselec.getNroSuelo());
-                    if(res==1){
-                        txtRes.setText("¡REGISTRADO EXITOSAMENTE!");
+                        int res = ctrllote.agregarLote(suping, camposelec.getNroCampo(), sueloselec.getNroSuelo());
+                        if(res==1){
+                            txtRes.setText("¡REGISTRADO EXITOSAMENTE!");
+                        }else{
+                            txtRes.setText("¡ERROR, vuelva a intentarlo!");
+                        }
+                    
                     }else{
-                        txtRes.setText("¡ERROR, vuelva a intentarlo!");
+                        txtRes.setText("Superficie ingresada no válida. Intente de nuevo.");
                     }
-                    
                 }catch(Exception e){
                     System.out.println(e.getMessage());
                     txtRes.setText("Superficie ingresada no válida. Intente de nuevo.");

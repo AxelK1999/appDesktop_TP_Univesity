@@ -154,11 +154,16 @@ public class IF_actualizar_campo extends javax.swing.JPanel {
             if(matcher.find()){
                 int id_campo = Integer.parseInt(matcher.group(1));
                 System.out.println(id_campo);
-                int res = ctrlcampo.actualizarCampo(id_campo,jTextFieldDireccionCampo.getText(),nro_estado);
-                if(res==1){
-                    txtRes.setText("¡Actualización Exitosa!");
+                String newdir =jTextFieldDireccionCampo.getText();
+                if(newdir.length()>0){
+                    int res = ctrlcampo.actualizarCampo(id_campo,newdir,nro_estado);
+                    if(res==1){
+                        txtRes.setText("¡Actualización Exitosa!");
+                    }
+                }else{
+                    txtRes.setText("Error: Direción vacía");
                 }
-                // PENDING Controlar el correcto ingreso de la nueva direccion
+                
             }else{
                 System.out.println("No anda tu ID");
             }

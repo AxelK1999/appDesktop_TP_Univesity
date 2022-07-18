@@ -185,7 +185,7 @@ public class IF_actualizar_lote extends javax.swing.JPanel {
                 .addComponent(btn_actualizar_lote)
                 .addGap(18, 18, 18)
                 .addComponent(txtRes)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -204,8 +204,7 @@ public class IF_actualizar_lote extends javax.swing.JPanel {
             Lote loteselec = ctrllote.consultarLote(Integer.parseInt(matcher1.group(1)));
             Suelo suelonuevo = ctrlcultivo.consultarTipoSuelo(Integer.parseInt(matcher2.group(1)));
             try{
-                Float suping = Float.parseFloat(txt_sup.getText());
-                //PENDING control de errores ingreso sup y que sea mayor que cero
+                float suping = Float.parseFloat(txt_sup.getText());
                 if(suping>0){
                     int res = ctrllote.actualizarLote(loteselec.getNroLote(), suping, camposelec, suelonuevo);
                     if(res==1){

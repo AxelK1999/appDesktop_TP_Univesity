@@ -204,30 +204,34 @@ public class IF_separar_lotes extends javax.swing.JPanel {
 
     private void btn_separar_lotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_separar_lotesActionPerformed
         
-        if(Integer.parseInt(txt_sup.getText())>0){
-            //PENDING capturar posible mal ingreso por teclado
-            System.out.println(txt_sup.getText());
-            Pattern patronIdentificar = Pattern.compile("ID ([0-9]+)",Pattern.CASE_INSENSITIVE);
-            Matcher matcher = patronIdentificar.matcher((String) box_lote.getSelectedItem());
-            if(matcher.find()){
-                Lote loteA = ctrllote.consultarLote(Integer.parseInt(matcher.group(1)));
-                if(Float.parseFloat(txt_sup.getText())<loteA.getSuperficie()){
-                    
-                    Lote loteN = new Lote();
-                    loteN.setSuperficie(Float.parseFloat(txt_sup.getText()));
-                    loteA.setSuperficie(loteA.getSuperficie()-Float.parseFloat(txt_sup.getText()));
-                    ctrllote.agregarLote(loteN.getSuperficie(), camposelec.getNroCampo(), sueloselec.getNroSuelo());
-                    ctrllote.actualizarLote(loteA.getNroLote(), loteA.getSuperficie(), camposelec, sueloselec);
-                    
-                    txtRes.setText("¡SEPARCIÓN EXITOSA!");
+        try{
+            float suping = Float.parseFloat(txt_sup.getText());
+            if(suping>0){
+                Pattern patronIdentificar = Pattern.compile("ID ([0-9]+)",Pattern.CASE_INSENSITIVE);
+                Matcher matcher = patronIdentificar.matcher((String) box_lote.getSelectedItem());
+                if(matcher.find()){
+                    Lote loteA = ctrllote.consultarLote(Integer.parseInt(matcher.group(1)));
+                    if(suping<loteA.getSuperficie()){
+
+                        Lote loteN = new Lote();
+                        loteN.setSuperficie(suping);
+                        loteA.setSuperficie(loteA.getSuperficie()-suping);
+                        ctrllote.agregarLote(loteN.getSuperficie(), camposelec.getNroCampo(), sueloselec.getNroSuelo());
+                        ctrllote.actualizarLote(loteA.getNroLote(), loteA.getSuperficie(), camposelec, sueloselec);
+
+                        txtRes.setText("¡SEPARCIÓN EXITOSA!");
+                    }else{
+                        txtRes.setText("Superficie ingresada muy grande");
+                    }
                 }else{
-                    txtRes.setText("Superficie ingresada muy grande");
+                    System.out.println("Error box lotes");
                 }
             }else{
-                System.out.println("Error box lotes");
+                txtRes.setText("Superficie ingresada no válida");
             }
-        }else{
-            txtRes.setText("Superficie ingresada no válida");
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            txtRes.setText("Superficie ingresada no válida. Intente de nuevo.");
         }
     }//GEN-LAST:event_btn_separar_lotesActionPerformed
 
