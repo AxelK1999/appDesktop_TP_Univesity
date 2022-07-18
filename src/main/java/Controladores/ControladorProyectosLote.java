@@ -129,8 +129,30 @@ Dao_BD dao_CRUD;
     
     //AGREGADOS
     
-    public  java.util.List obtenerProyectosDeLote(int idLote){
-        return consultarTodos(new Proyecto(), " as p where p.loteConProyecto.nroLote = "+idLote);
+    public List<Proyecto> obtenerProyectosDeLote(int idLote){
+        return (List<Proyecto>)consultarTodos(new Proyecto(), " as p where p.loteConProyecto.nroLote = "+idLote);
+    }
+    
+    public List obtenerDetallesDeProyecto(int idProyecto){
+        return consultarTodos(new DetalleProyecto(), " as d where d.fk_nro_proyecto = "+idProyecto);
+    }
+    
+    public List obtenerSituacionesAnormales(){
+        return consultarTodos(new SituacionAnormal(), " as sa ");
+    }
+    
+    public int registrarSAenDetalle(int nroDetalle,int nroSA){
+        List lista = consultaNativa("Insert into relacion_situacionanormal_detalleproyecto values ("+nroDetalle+","+nroSA+")");
+        List listacomp = consultaNativa("Select * from relacion_situacionanormal_detalleproyecto as rel where fk_nro_detalle="+nroDetalle+" and fk_nro_incidencia="+nroSA);
+        if(listacomp.size()>0){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    
+    public List consultaNativa(String query){
+    	return dao_CRUD.consultaNativa(new DetalleProyecto(),query);
     }
     
 }

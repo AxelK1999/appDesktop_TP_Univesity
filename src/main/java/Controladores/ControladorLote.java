@@ -69,4 +69,8 @@ public class ControladorLote {
         return consultaNativa("select * from lote where fk_nro_campo = "+ nroCampo +" and fk_nro_suelo = " + nroSuelo);
     }
     
+    public  List<Lote> obtenerLotesDeCampo(int nroCampo){
+        return (List<Lote>)consultaNativa("select * from lote where fk_nro_campo = "+ nroCampo);
+    }
+    
 }
